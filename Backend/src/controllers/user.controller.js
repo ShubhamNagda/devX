@@ -65,8 +65,6 @@ const registerUser = asyncHandler(async (req, res) => {
 
 //login user
 const loginUser = asyncHandler(async (req, res) => {
-  console.log("CORS_ORIGIN:", process.env.CORS_ORIGIN);
-  console.log("NODE_ENV:", process.env.NODE_ENV);
   const { email, password } = req.body;
 
   if (!email || !password) {
