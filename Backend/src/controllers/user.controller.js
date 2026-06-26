@@ -310,7 +310,7 @@ const searchUsers = asyncHandler(async (req, res) => {
   const users = await User.find({
     fullName: {
       $regex: fullName,
-      $options: "i", // case-insensitive
+      $options: "i",
     },
   }).select("-password -refreshToken");
 
