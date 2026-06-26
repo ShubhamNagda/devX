@@ -12,7 +12,7 @@ const UserPosts = ({selectedUser}) =>{
     useEffect(()=>{
         const fetchPosts = async() =>{
             try {
-                const fetchedPosts = await axios.get('http://localhost:3000/api/v1/posts/getuserposts',
+                const fetchedPosts = await axios.get(`${import.meta.env.VITE_API_URL_POSTS}/getuserposts`,
                     {
                         params: {
                             userId: selectedUser._id,
@@ -36,7 +36,7 @@ const UserPosts = ({selectedUser}) =>{
         <div className="flex flex-col w-full gap-5">
         {posts.map((post)=>{
             return(
-                <div key={post._id} className="relative pb-12 w-11/12 flex flex-col gap-5 h-full bg-[#1c2633] rounded-2xl ">
+                <div key={post._id} className="relative pb-12 w-full flex flex-col gap-5 h-full bg-[#1c2633] rounded-2xl ">
                     <div className="">
                         <div className="flex flex-nowrap">
                             <img src={post.owner?.profile?.url ? post.owner?.profile?.url : UserIcon} alt="" className="w-16 h-16 object-center object-cover p-2 rounded-full min-h-12/12"/>

@@ -8,6 +8,7 @@ const Login = () =>{
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [err, setErr] = useState(false)
 
     const [user, setUser] = useContext(UserContext)
 
@@ -16,10 +17,12 @@ const Login = () =>{
         try {
             const response = await axios.post(`${import.meta.env.VITE_API_URL_USERS}/login`,{email,password},{withCredentials: true,});
             setUser(response.data.data.user);
+            setErr(false)
             navigate("/", { replace: true });
             
         } catch (error) {
             console.error(error.response?.data || error.message);
+            setErr(true)
         }
     }
 
@@ -33,6 +36,7 @@ const Login = () =>{
                     </div>
                     <input type="email" name="email" id="" className="bg-[#EAEDED] h-12 rounded-4xl p-5 outline-none hover:bg-[#cac9c9]" placeholder="email:" value={email} onChange={(e)=> setEmail(e.target.value)}/>
                     <input type="password" name="password" id="" className="bg-[#EAEDED] h-12 rounded-4xl p-5 outline-none hover:bg-[#cac9c9]" placeholder="password:" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    {err ? <h1 className="text-red-600">Invalid credentials</h1>: <div></div>}
                     <input type="submit" value="Submit" className="bg-blue-400 text-[#ffffff] font-bold h-12 pb-2 pt-2 rounded-4xl p-5 outline-none cursor-pointer active:scale-95 "/>
                     <div className="flex gap-3 w-full justify-center">
                         <p className="text-[#ffffff] pl-2">new user? </p> 

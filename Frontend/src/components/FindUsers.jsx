@@ -13,7 +13,7 @@ const FindUsers = () =>{
         e.preventDefault();
 
         try{
-            const users = await axios.get('http://localhost:3000/api/v1/users/search-users',
+            const users = await axios.get(`${import.meta.env.VITE_API_URL_USERS}/search-users`,
                 {
                     params:{
                         fullName:name
@@ -28,7 +28,7 @@ const FindUsers = () =>{
     }
 
     return(
-        <div className="flex flex-col bg-[#131921] h-screen w-full p-5 overflow-y-scroll other-scrollbar overflow-x-hidden">
+        <div className="flex flex-col p-3 bg-[#131921] h-screen w-full overflow-y-scroll other-scrollbar overflow-x-hidden">
         {selectedUser ? (
             <UserProfile searchedUser={selectedUser} onBack={()=> setSelectedUser(null)}/>
         ): (

@@ -5,7 +5,7 @@ const LikePost = ({post, setPosts}) =>{
     const likePost = async (postId) => {
     try {
         await axios.post(
-            `http://localhost:3000/api/v1/likes/${postId}`,
+            `${import.meta.env.VITE_API_URL_LIKES}/${postId}`,
             {},
             { withCredentials: true }
         );
@@ -28,7 +28,7 @@ const LikePost = ({post, setPosts}) =>{
    const unLikePost = async (postId) => {
     try {
         await axios.delete(
-            `http://localhost:3000/api/v1/likes/${postId}`,
+            `${import.meta.env.VITE_API_URL_LIKES}/${postId}`,
             { withCredentials: true }
         );
 

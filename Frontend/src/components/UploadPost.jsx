@@ -7,15 +7,18 @@ const UploadPost = ({ onBack }) => {
   const [user, _] = useContext(UserContext);
   const [images, setImages] = useState([]);
   const [content, setContent] = useState("")
+  const [err, setErr] = useState(false)
 
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files || []);
-
     setImages((prev) => [...prev, ...files]);
 
   };
 
   const upload = async () => {
+    if(!content && !images.length > 0){
+      setErr(true)
+    }
   try {
     const formData = new FormData();
 
@@ -33,7 +36,6 @@ const UploadPost = ({ onBack }) => {
       }
     );
 
-    console.log(res.data);
     onBack(); 
   } catch (error) {
     console.error(error);
@@ -42,6 +44,7 @@ const UploadPost = ({ onBack }) => {
 
   return (
     <div className="relative w-full h-screen text-white overflow-hidden">
+      {err ? <h1 className="text-red-600">Must required content or atleast one image </h1>: <div></div>}
       <div className="p-4">
         <h1
           onClick={onBack}

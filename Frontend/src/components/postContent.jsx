@@ -11,7 +11,7 @@ const PostContent = ({post, setPosts}) =>{
         const savePost = async (postId) => {
     try {
         await axios.patch(
-            `http://localhost:3000/api/v1/posts/updatepost/${postId}`,
+            `${import.meta.env.VITE_API_URL_POSTS}/updatepost/${postId}`,
             {
                 content: editedContent,
             },
@@ -41,7 +41,7 @@ const PostContent = ({post, setPosts}) =>{
     const deletePost = async (postId) => {
     try {
         await axios.delete(
-            `http://localhost:3000/api/v1/posts/deletepost/${postId}`,
+            `${import.meta.env.VITE_API_URL_POSTS}/deletepost/${postId}`,
             {
                 withCredentials: true,
             }

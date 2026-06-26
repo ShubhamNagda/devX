@@ -17,7 +17,7 @@ const UserProfile = ({ searchedUser, onBack }) => {
         const checkFollowStatus = async () =>{
 
             try {
-                const status = await axios.get(`http://localhost:3000/api/v1/follows/follow-status/${searchedUser._id}`,
+                const status = await axios.get(`${import.meta.env.VITE_API_URL_FOLLOWS}/follow-status/${searchedUser._id}`,
                     {
                         withCredentials:true,
                     }
@@ -64,7 +64,7 @@ const UserProfile = ({ searchedUser, onBack }) => {
   return (
     <div className="text-white w-full">
       {checkFollowers ? <Followers onBack={() => setCheckFollowers(null)} user={searchedUser} /> : checkFollowings ? <Followings onBack={()=> setCheckFollowings(null)} user={searchedUser}/> :
-      <div className="p-4">
+      <div className="p-2">
         <button onClick={onBack} className="mb-4 cursor-pointer active:scale-95">
         ← Back
       </button>

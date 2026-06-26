@@ -8,10 +8,15 @@ const SignUp = () =>{
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
+    const [err, setErr] = useState(false)
+
     const navigate = useNavigate();
     const cerateNewUser = async (e) =>{
         e.preventDefault();
-
+        if(!password || !username || !email || !fullName){
+            setErr(true)
+            return
+        }
         try {
             const createdUser = await axios.post(`${import.meta.env.VITE_API_URL_USERS}/register`,
             {
@@ -21,6 +26,7 @@ const SignUp = () =>{
                 email
             })
 
+            setErr(false)
             navigate('/login',{replace:true})
         } catch (error) {
             console.error("error while signup", error);
@@ -39,6 +45,7 @@ const SignUp = () =>{
                     <input type="text" name="username" value={username} id="" onChange={(e)=> setUsername(e.target.value)} id="" className="bg-[#EAEDED] h-12 rounded-4xl p-5 outline-none hover:bg-[#cac9c9]" placeholder="username: (unique & space not allowed)"/>
                     <input type="email" name="email" value={email} id="" onChange={(e)=> setEmail(e.target.value)} id="" className="bg-[#EAEDED] h-12 rounded-4xl p-5 outline-none hover:bg-[#cac9c9]" placeholder="email:"/>
                     <input type="password" name="password" value={password} id="" onChange={(e)=> setPassword(e.target.value)} id="" className="bg-[#EAEDED] h-12 rounded-4xl p-5 outline-none hover:bg-[#cac9c9]" placeholder="password:"/>
+                    {err ? <h1 className="text-red-600">all fields are required! </h1>: <div></div>}
                     <input type="submit" value="Submit" className="bg-blue-400 text-[#ffffff] font-bold h-12 pb-2 pt-2 rounded-4xl p-5 outline-none cursor-pointer active:scale-95 "/>
                     <div className="flex gap-3 w-full justify-center">
                         <p className="text-[#ffffff] pl-2">Already have account? </p> 

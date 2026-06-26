@@ -4,6 +4,7 @@ import UserIcon from "../assets/UserIcon.svg"
 import { PencilLine } from "lucide-react";
 import axios from "axios";
 import Logout from "./Logout";
+import ChangePassword from "./ChangePassword";
 
 const EditProfile = ({onBack}) =>{
     const [user, setUser] = useContext(UserContext);
@@ -75,6 +76,9 @@ const EditProfile = ({onBack}) =>{
                     <input type="text" name="fullName" value={fullName} className="p-2 outline-none border-2 border-[#ffffff] rounded-xl w-11/12 " onChange={(e)=> setFullName(e.target.value)} placeholder="fullName"/>
                     <input type="email" name="email" value={email}  className="p-2 outline-none border-2 border-[#ffffff] rounded-xl w-11/12" onChange={(e)=> setEmail(e.target.value)} placeholder="email"/>
                 <input type="submit" value="Submit" onClick={changeDetails} className="bg-blue-500 p-2 w-11/12 rounded-xl cursor-pointer active:scale-95"/>
+            </div>
+            <div>
+                <ChangePassword />
             </div>
         </div>
     )

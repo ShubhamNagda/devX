@@ -18,7 +18,7 @@ const AllPosts = () =>{
         const fetchPosts = async () =>{
             try {
                 setLoading(true)
-                const response = await axios.get("http://localhost:3000/api/v1/posts/getallposts",
+                const response = await axios.get(`${import.meta.env.VITE_API_URL_POSTS}/getallposts`,
                     {
                         withCredentials:true
                     }
