@@ -1,0 +1,51 @@
+<svg width="420" height="120" viewBox="0 0 420 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4F46E5"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Icon -->
+  <g transform="translate(20,20)">
+    <!-- Left code bracket -->
+    <path d="M40 15 L20 40 L40 65"
+          fill="none"
+          stroke="url(#grad)"
+          stroke-width="6"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+
+    <!-- X -->
+    <path d="M55 18 L82 62 M82 18 L55 62"
+          stroke="url(#grad)"
+          stroke-width="7"
+          stroke-linecap="round"/>
+
+    <!-- Right code bracket -->
+    <path d="M98 15 L118 40 L98 65"
+          fill="none"
+          stroke="url(#grad)"
+          stroke-width="6"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+  </g>
+
+  <!-- Text -->
+  <text x="155" y="72"
+        font-family="Inter, Segoe UI, Arial, sans-serif"
+        font-size="48"
+        font-weight="700"
+        fill="#111827">
+    dev<tspan fill="url(#grad)">X</tspan>
+  </text>
+
+  <!-- Tagline -->
+  <text x="158" y="96"
+        font-family="Inter, Segoe UI, Arial, sans-serif"
+        font-size="14"
+        fill="#6B7280"
+        letter-spacing="1">
+    CODE • SHARE • CONNECT
+  </text>
+</svg>

@@ -1,19 +1,26 @@
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  width="128"
-  height="128"
-  viewBox="0 0 128 128"
-  fill="none"
->
-  <!-- White background -->
-  <rect width="128" height="128" rx="24" fill="#FFFFFF" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4F46E5"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
 
-  <!-- User avatar circle -->
-  <circle cx="64" cy="46" r="20" fill="#9CA3AF" />
+  <rect width="128" height="128" rx="64" fill="#111827"/>
 
-  <!-- User body -->
+  <circle cx="64" cy="45" r="18" fill="#D1D5DB"/>
+
   <path
-    d="M32 102c0-17.673 14.327-32 32-32s32 14.327 32 32"
-    fill="#9CA3AF"
+    d="M32 102c0-18 14-30 32-30s32 12 32 30"
+    fill="#D1D5DB"
+  />
+
+  <circle
+    cx="64"
+    cy="64"
+    r="61"
+    fill="none"
+    stroke="url(#g)"
+    stroke-width="3"
   />
 </svg>
