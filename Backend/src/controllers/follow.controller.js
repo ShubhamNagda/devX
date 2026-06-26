@@ -106,21 +106,21 @@ const getFollowStatus = asyncHandler(async (req, res) => {
     .json(
       new ApiResponse(
         200,
-        { isFollowing: !!isFollowed },
-        isFollowed ? "User followed" : "User not followed",
+        { isFollowed: !!isFollowed },
+        isFollowed ? true : false,
       ),
     );
 });
 
 //get followers
 const getFollowers = asyncHandler(async (req, res) => {
-  const { userId } = req.params;
+  const { userId } = req.query;
   const user = await User.findById(userId);
   if (!user) {
     throw new ApiError(404, "user does not exist");
   }
   const followers = await Follow.find({ followed: userId })
-    .populate("follower", "username fullName profile")
+    .populate("follower", "username fullName profile followers following")
     .select("follower");
 
   return res
@@ -136,7 +136,7 @@ const getFollowers = asyncHandler(async (req, res) => {
 
 // get Following
 const getFollowing = asyncHandler(async (req, res) => {
-  const { userId } = req.params;
+  const { userId } = req.query;
 
   const user = await User.findById(userId);
   if (!user) {
@@ -144,7 +144,7 @@ const getFollowing = asyncHandler(async (req, res) => {
   }
 
   const following = await Follow.find({ follower: userId })
-    .populate("followed", "username fullName profile")
+    .populate("followed", "username fullName profile followers following")
     .select("followed");
 
   return res

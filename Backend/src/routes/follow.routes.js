@@ -11,11 +11,11 @@ import { verifyJWT } from "../middlewares/auth.middleware.js";
 const router = Router();
 
 router
-  .route("/follow/:userId")
+  .route("/:userId")
   .post(verifyJWT, followUser)
   .delete(verifyJWT, unfollowUser);
 router.route("/follow-status/:userId").get(verifyJWT, getFollowStatus);
-router.route("/followers/:userId").get(verifyJWT, getFollowers);
-router.route("/following/:userId").get(verifyJWT, getFollowing);
+router.route("/followers/").get(verifyJWT, getFollowers);
+router.route("/following/").get(verifyJWT, getFollowing);
 
 export default router;

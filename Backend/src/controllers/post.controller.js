@@ -1,4 +1,5 @@
 import { Post } from "../models/post.model.js";
+import { Like } from "../models/like.model.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { uploadOnCloudinary, deleteFromCloudinary } from "../cloudinary.js";
@@ -135,11 +136,66 @@ const deletePost = asyncHandler(async (req, res) => {
 });
 
 const getAllPosts = asyncHandler(async (req, res) => {
-  const allPosts = await Post.find().populate("owner", "username profile ");
+  const allPosts = await Post.find()
+    .sort({ createdAt: -1 })
+    .populate("owner", "fullName profile")
+    .lean();
+
+  const postIds = allPosts.map((post) => post._id);
+
+  const userLikes = await Like.find({
+    user: req.user._id,
+    post: { $in: postIds },
+  }).select("post");
+
+  const likedPostIds = new Set(userLikes.map((like) => like.post.toString()));
+
+  const postsWithLikeStatus = allPosts.map((post) => ({
+    ...post,
+    isLiked: likedPostIds.has(post._id.toString()),
+  }));
 
   return res
     .status(200)
-    .json(new ApiResponse(200, allPosts, "All posts fetched successfully"));
+    .json(
+      new ApiResponse(
+        200,
+        postsWithLikeStatus,
+        "All posts fetched successfully",
+      ),
+    );
 });
 
-export { createPost, updatePost, deletePost, getAllPosts };
+const getUsersPost = asyncHandler(async (req, res) => {
+  const { userId } = req.query;
+
+  if (!userId) {
+    throw new ApiError(400, "userId is required");
+  }
+
+  const posts = await Post.find({ owner: userId })
+    .populate("owner", "profile fullName")
+    .lean();
+
+  const postIds = posts.map((post) => post._id);
+
+  const userLikes = await Like.find({
+    user: req.user._id,
+    post: { $in: postIds },
+  }).select("post");
+
+  const likedPostIds = new Set(userLikes.map((like) => like.post.toString()));
+
+  const postsWithLikeStatus = posts.map((post) => ({
+    ...post,
+    isLiked: likedPostIds.has(post._id.toString()),
+  }));
+
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(200, postsWithLikeStatus, "posts fetched successfully"),
+    );
+});
+
+export { createPost, updatePost, deletePost, getAllPosts, getUsersPost };

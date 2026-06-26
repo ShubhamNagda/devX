@@ -7,6 +7,7 @@ import {
   logOut,
   refreshAccessToken,
   registerUser,
+  searchUsers,
   updateProfileInfo,
 } from "../controllers/user.controller.js";
 import { upload } from "../middlewares/multer.middleware.js";
@@ -24,5 +25,6 @@ router.route("/me").get(verifyJWT, getCurrentUser);
 router.route("/refresh-token").post(refreshAccessToken);
 router.route("/change-password").patch(verifyJWT, changePassword);
 router.route("/update-user-info").patch(verifyJWT, updateProfileInfo);
+router.route("/search-users").get(searchUsers);
 
 export default router;

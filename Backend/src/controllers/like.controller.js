@@ -35,20 +35,25 @@ const likePost = asyncHandler(async (req, res) => {
     user: req.user._id,
   });
 
+  await Post.findByIdAndUpdate(postId, {
+    $inc: { likesCount: 1 },
+  });
+
   return res
     .status(201)
     .json(new ApiResponse(201, {}, "Post liked successfully"));
 });
 
 const unlikePost = asyncHandler(async (req, res) => {
-  const postToUnlike = await Post.findById(req.params?.postId);
+  const { postId } = req.params;
+  const postToUnlike = await Post.findById(postId);
 
   if (!postToUnlike) {
     throw new ApiError(404, "post does not exist or deleted by user");
   }
 
   const existingLike = await Like.findOne({
-    post: postToUnlike._id,
+    post: postId,
     user: req.user._id,
   });
 
@@ -57,8 +62,12 @@ const unlikePost = asyncHandler(async (req, res) => {
   }
 
   await Like.deleteOne({
-    post: postToUnlike._id,
+    post: postId,
     user: req.user._id,
+  });
+
+  await Post.findByIdAndUpdate(postId, {
+    $inc: { likesCount: -1 },
   });
 
   return res

@@ -94,7 +94,8 @@ const loginUser = asyncHandler(async (req, res) => {
 
   const options = {
     httpOnly: true,
-    secure: false, //set to true before deploy
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
   };
   return res
     .status(200)
@@ -267,9 +268,13 @@ const updateProfileInfo = asyncHandler(async (req, res) => {
     throw new ApiError(404, "User not found");
   }
 
-  if (username) {
+  const trimmedUsername = username?.trim();
+  const trimmedEmail = email?.trim();
+  const trimmedFullName = fullName?.trim();
+
+  if (trimmedUsername) {
     const existingUsername = await User.findOne({
-      username,
+      username: trimmedUsername,
       _id: { $ne: req.user._id },
     });
 
@@ -277,12 +282,12 @@ const updateProfileInfo = asyncHandler(async (req, res) => {
       throw new ApiError(409, "Username already exists");
     }
 
-    user.username = username;
+    user.username = trimmedUsername;
   }
 
-  if (email) {
+  if (trimmedEmail) {
     const existingEmail = await User.findOne({
-      email,
+      email: trimmedEmail,
       _id: { $ne: req.user._id },
     });
 
@@ -290,11 +295,11 @@ const updateProfileInfo = asyncHandler(async (req, res) => {
       throw new ApiError(409, "Email already exists");
     }
 
-    user.email = email;
+    user.email = trimmedEmail;
   }
 
-  if (fullName) {
-    user.fullName = fullName;
+  if (trimmedFullName) {
+    user.fullName = trimmedFullName;
   }
 
   await user.save({ validateBeforeSave: false });
@@ -308,6 +313,25 @@ const updateProfileInfo = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, updatedUser, "Profile updated successfully"));
 });
 
+//search users
+const searchUsers = asyncHandler(async (req, res) => {
+  const { fullName } = req.query;
+  if (!fullName.trim()) {
+    throw new ApiError(400, "Full name is required");
+  }
+
+  const users = await User.find({
+    fullName: {
+      $regex: fullName,
+      $options: "i", // case-insensitive
+    },
+  }).select("-password -refreshToken");
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, users, "users fetched successfully"));
+});
+
 export {
   registerUser,
   loginUser,
@@ -317,4 +341,5 @@ export {
   refreshAccessToken,
   changePassword,
   updateProfileInfo,
+  searchUsers,
 };
