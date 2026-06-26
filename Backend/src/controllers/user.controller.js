@@ -4,6 +4,7 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import jwt from "jsonwebtoken";
+import { cookieOptions } from "../constants.js";
 
 //new access refresh token
 const generateAccessRefreshToken = async (userId) => {
@@ -92,15 +93,10 @@ const loginUser = asyncHandler(async (req, res) => {
     "-password -refreshToken",
   );
 
-  const options = {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-  };
   return res
     .status(200)
-    .cookie("refreshToken", refreshToken, options)
-    .cookie("accessToken", accessToken, options)
+    .cookie("refreshToken", refreshToken, cookieOptions)
+    .cookie("accessToken", accessToken, cookieOptions)
     .json(
       new ApiResponse(
         200,
@@ -126,15 +122,10 @@ const logOut = asyncHandler(async (req, res) => {
     },
   );
 
-  const options = {
-    httpOnly: true,
-    secure: false,
-  };
-
   return res
     .status(200)
-    .clearCookie("accessToken", options)
-    .clearCookie("refreshToken", options)
+    .clearCookie("accessToken", cookieOptions)
+    .clearCookie("refreshToken", cookieOptions)
     .json(new ApiResponse(200, {}, "user logged out successfully"));
 });
 
@@ -210,19 +201,14 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
       throw new ApiError(401, "Refresh token is expired or used");
     }
 
-    const options = {
-      httpOnly: true,
-      secure: false,
-    };
-
     const { accessToken, refreshToken } = await generateAccessRefreshToken(
       user._id,
     );
 
     return res
       .status(200)
-      .cookie("accessToken", accessToken, options)
-      .cookie("refreshToken", refreshToken, options)
+      .cookie("accessToken", accessToken, cookieOptions)
+      .cookie("refreshToken", refreshToken, cookieOptions)
       .json(
         new ApiResponse(
           200,
@@ -316,7 +302,8 @@ const updateProfileInfo = asyncHandler(async (req, res) => {
 //search users
 const searchUsers = asyncHandler(async (req, res) => {
   const { fullName } = req.query;
-  if (!fullName.trim()) {
+
+  if (!fullName?.trim()) {
     throw new ApiError(400, "Full name is required");
   }
 
