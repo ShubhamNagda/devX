@@ -47,7 +47,7 @@ const AllPosts = () =>{
                     <div key={post._id} className="w-11/12 flex flex-col h-full text-[#ffffff] bg-[#1c2633] rounded-2xl relative">
                         <div className="pb-15">
                             <div className="flex flex-nowrap">
-                                <img src={post.owner?.profile?.url || UserIcon} alt="" className="w-16 h-16 object-center object-cover p-2 rounded-4xl min-h-12/12"/>
+                                <img src={post.owner?.profile?.url || UserIcon} alt="" className="w-16 h-16 object-center object-cover p-2 rounded-full min-h-12/12"/>
                                 <div className="flex flex-col gap-0 w-12/12">
                                     <h1 className="m-0 mt-1.5 font-bold">{post.owner.fullName}</h1>
                                     <p className="m-0 text-gray-500 font-normal">
