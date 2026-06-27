@@ -6,6 +6,7 @@ import EditProfile from "./EditProfile"
 import { UserPen } from "lucide-react"
 import Followers from "./Followers"
 import Following from "./Following"
+import Nav from "./NavForMobile"
 
 const User = () =>{
     const [user, setUser] = useContext(UserContext)
@@ -15,11 +16,12 @@ const User = () =>{
 
     return(
         <div className="bg-[#131921] w-full h-screen overflow-y-scroll overflow-x-hidden other-scrollbar">
+            <Nav />
             { checkFollowers ? <Followers user={user} onBack={() => setCheckFollowers(false)}/> : checkFollowings ? <Following user={user} onBack={() => setCheckFollowings(false)}/> :
             edit 
             ? <EditProfile onBack={()=> setEdit(false)}/>
             :
-            <div className="">
+            <div className="w-full flex flex-col justify-center items-center">
                 <div className="relative flex w-11/12 mt-5 ml-2 gap-4 flex-nowrap bg-[#1c2633] p-2 mr-2 rounded-2xl">
                     <div className="absolute -right-2 -bottom-2 text-[#ffffff] cursor-pointer">
                         <UserPen onClick={() =>setEdit(true)}/>
@@ -40,8 +42,8 @@ const User = () =>{
                         </div>
                     </div>
                 </div>
-                <div className="ml-3 mt-4 text-[#ffffff]">
-                    <h1 className="text-xl font-bold">Posts:</h1>
+                <div className=" mt-4 text-[#ffffff] w-11/12 flex justify-start">
+                    <h1 className="text-xl font-bold ">Posts:</h1>
                 </div>
                 <div className="flex justify-center w-11/12 ml-2 mt-2 text-[#ffffff]">
                     <UserPosts selectedUser={user}/>

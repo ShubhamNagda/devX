@@ -16,10 +16,8 @@ const Login = () =>{
         
         e.preventDefault();
         try {
-            console.log(import.meta.env.VITE_API_URL_USERS);
             const response = await axios.post(`${import.meta.env.VITE_API_URL_USERS}/login`,{email,password},{withCredentials: true,});
             setUser(response.data.data.user);
-            console.log(response.data.data.user);
             setErr(false)
 
             navigate("/", { replace: true });

@@ -10,7 +10,6 @@ const ChangePassword = () =>{
     const change = async() =>{
         try {
             const res = await axios.patch(`${import.meta.env.VITE_API_URL_USERS}/change-password`,{newPassword,oldPassword},{withCredentials:true})
-            console.log(res.data);
             
         } catch (error) {
             console.error("error while changing password", error);

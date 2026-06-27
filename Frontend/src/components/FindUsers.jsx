@@ -3,6 +3,7 @@ import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import UserProfile from "./UserProfile";
 import UserIcon  from "../assets/UserIcon.svg";
+import Nav from "./NavForMobile";
 
 const FindUsers = () =>{
     const [selectedUser, setSelectedUser] = useState(null);
@@ -29,12 +30,13 @@ const FindUsers = () =>{
 
     return(
         <div className="flex flex-col p-3 bg-[#131921] h-screen w-full overflow-y-scroll other-scrollbar overflow-x-hidden">
+            <Nav />
         {selectedUser ? (
             <UserProfile searchedUser={selectedUser} onBack={()=> setSelectedUser(null)}/>
         ): (
-            <>
+            <div className="w-full flex flex-col justify-center items-center">
                 <h1 className="mb-4 font-bold text-[#ffffff] text-[22px]">Find your friends:</h1>
-                <form className="flex w-full items-center" onSubmit={fetchFriends} >
+                <form className="flex w-full items-center justify-center" onSubmit={fetchFriends} >
                     <input type="text" value={name} onChange={(e)=>setName(e.target.value)} name="fullName" placeholder="Name: " className="outline-none bg-[#ffffff] w-3xs h-12 rounded-bl-2xl rounded-tl-2xl pl-2"/>
                     <button type="submit" className="bg-[#ffffff] rounded-tr-2xl rounded-br-2xl pr-2 p-3 cursor-pointer">{<Search/>}</button>
                 </form>
@@ -43,7 +45,7 @@ const FindUsers = () =>{
                         <div
                             key={searchedUser._id}
                             onClick={() => setSelectedUser(searchedUser)}
-                            className="bg-[#232F3E] w-5/12 p-2 flex justify-center flex-col items-center rounded-2xl cursor-pointer active:scale-95"
+                            className="bg-[#232F3E] w-30 p-2 flex justify-center flex-col items-center rounded-2xl cursor-pointer active:scale-95"
                         >
                             <img
                             className="w-12 h-12 object-cover object-center rounded-full"
@@ -59,7 +61,7 @@ const FindUsers = () =>{
                         </div>
                     ))}
                  </div>
-            </>
+            </div>
             )}
         </div>
         
