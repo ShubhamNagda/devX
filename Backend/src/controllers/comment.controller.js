@@ -30,7 +30,7 @@ const createComment = asyncHandler(async (req, res) => {
 
   const createdComment = await Comment.findById(comment._id).populate(
     "owner",
-    "username profile",
+    "fullName profile",
   );
 
   await Post.findByIdAndUpdate(postId, {
@@ -68,7 +68,7 @@ const updateComment = asyncHandler(async (req, res) => {
     {
       returnDocument: "after",
     },
-  ).populate("owner", "username profile");
+  ).populate("owner", "fullName profile");
 
   if (!updatedComment) {
     throw new ApiError(404, "Comment not found or unauthorized");
@@ -96,7 +96,7 @@ const getPostComments = asyncHandler(async (req, res) => {
   }
 
   const comments = await Comment.find({ post: postId })
-    .populate("owner", "username profile")
+    .populate("owner", "fullName profile")
     .sort({ createdAt: -1 });
 
   return res

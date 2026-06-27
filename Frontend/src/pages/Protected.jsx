@@ -5,19 +5,17 @@ import UserContext from "../context/UserContext";
 
 const Protected = ({ Cmp }) => {
   const [, setUser] = useContext(UserContext);
-  const [loading, setLoading] = useState(true);
-
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUser = async () => {
-  try {
-    const response = await axios.get(
-      `${import.meta.env.VITE_API_URL_USERS}/me`,
-      {
-        withCredentials: true,
-      }
-    );
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL_USERS}/me`,
+        {
+          withCredentials: true,
+        }
+      );
 
     setUser(response.data.data);
   } catch (error) {
@@ -45,17 +43,10 @@ const Protected = ({ Cmp }) => {
     } else {
       navigate("/login", { replace: true });
     }
-  } finally {
-    setLoading(false);
   }
 };
 fetchUser()
   }, [navigate, setUser]);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   return <Cmp />;
 };
 

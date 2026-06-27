@@ -4,7 +4,7 @@ import UserIcon from "../assets/UserIcon.svg"
 import PostContent from "./postContent"
 import ImagesOfPost from "./ImagesOfPost"
 import LikePost from "./LikePost"
-import CommentOnPost from "./CommentOnPost"
+import CommentOfPost from "./CommentOfPost"
 
 const UserPosts = ({selectedUser}) =>{
     const [posts, setPosts] = useState([])
@@ -51,13 +51,12 @@ const UserPosts = ({selectedUser}) =>{
                                 </p>
                             </div>
                         </div>
-                        <div className="w-full p-3">
+                        <div className="w-full p-3 pb-7">
                             <PostContent post={post} setPosts={setPosts} />
                             <ImagesOfPost images={post.images} />
                         </div>
                         <div className="flex gap-5 absolute bottom-2 left-3">
                             <LikePost post={post} setPosts={setPosts} />
-                            <CommentOnPost post={post} setPosts={setPosts}/>
                         </div>
                     </div>
                 </div>

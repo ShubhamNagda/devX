@@ -33,7 +33,7 @@ const Followers = ({onBack, user}) =>{
     },[])
     if(loading){
         return(
-            <h1 className="w-full h-screen flex justify-center items-center text-[#ffffff]">Loading...</h1>
+            <div className="w-full h-screen flex justify-center items-center text-[#ffffff]"><h1>Loading...</h1></div>
         )
     }
     return(
