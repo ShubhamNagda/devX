@@ -99,6 +99,8 @@ const getPostComments = asyncHandler(async (req, res) => {
     .populate("owner", "fullName profile")
     .sort({ createdAt: -1 });
 
+  console.log(comments[0].owner);
+
   return res
     .status(200)
     .json(new ApiResponse(200, comments, "Comments fetched successfully"));
