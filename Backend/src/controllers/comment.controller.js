@@ -80,6 +80,8 @@ const updateComment = asyncHandler(async (req, res) => {
 });
 
 const getPostComments = asyncHandler(async (req, res) => {
+  console.log("getPostComments called");
+
   const { postId } = req.params;
   if (!postId) {
     throw new ApiError(400, "Post id is required");
@@ -98,9 +100,6 @@ const getPostComments = asyncHandler(async (req, res) => {
   const comments = await Comment.find({ post: postId })
     .populate("owner", "fullName profile")
     .sort({ createdAt: -1 });
-
-  console.log("===== COMMENTS =====");
-  console.log(JSON.stringify(comments, null, 2));
 
   return res
     .status(200)
