@@ -5,9 +5,11 @@ import PostContent from "./postContent"
 import ImagesOfPost from "./ImagesOfPost"
 import LikePost from "./LikePost"
 import CommentOfPost from "./CommentOfPost"
+import { MessageSquare } from "lucide-react"
 
 const UserPosts = ({selectedUser}) =>{
     const [posts, setPosts] = useState([])
+    const [activeCommentPostId, setActiveCommentPostId] = useState(null)
 
     useEffect(()=>{
         const fetchPosts = async() =>{
@@ -57,6 +59,14 @@ const UserPosts = ({selectedUser}) =>{
                         </div>
                         <div className="flex gap-5 absolute bottom-2 left-3">
                             <LikePost post={post} setPosts={setPosts} />
+                            <div className="text-center cursor-pointer" onClick={() => { console.log(activeCommentPostId, post._id);
+                             setActiveCommentPostId(activeCommentPostId === post._id ? null : post._id)}}>
+                                <MessageSquare strokeWidth={2} />
+                                <p>{post.commentsCount}</p>
+                            </div>
+                        </div>
+                        <div>
+                            {activeCommentPostId === post._id && (<CommentOfPost post={post} />)}
                         </div>
                     </div>
                 </div>
