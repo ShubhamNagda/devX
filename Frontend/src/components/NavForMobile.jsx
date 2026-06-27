@@ -1,7 +1,7 @@
 import { Home, Search } from "lucide-react"
 import { useContext } from "react"
 import { Link } from "react-router-dom"
-import userIcon from "../assets/userIcon.svg"
+import userIcon from "../assets/UserIcon.svg"
 import UserContext from "../context/UserContext"
 
 const Nav = () =>{
