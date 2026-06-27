@@ -22,7 +22,6 @@ const Followers = ({onBack, user}) =>{
             
             
             setFollowers(response.data.data.followers)
-            console.log(response.data.data.followers);
             
             setLoading(false)
         } catch (error) {
