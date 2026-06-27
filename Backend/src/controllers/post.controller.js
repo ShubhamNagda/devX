@@ -1,4 +1,5 @@
 import { Post } from "../models/post.model.js";
+import { Comment } from "../models/comment.model.js";
 import { Like } from "../models/like.model.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
@@ -116,6 +117,7 @@ const deletePost = asyncHandler(async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(userId)) {
     throw new ApiError(400, "Invalid user ID");
   }
+
   const post = await Post.findById(postId);
 
   if (!post) {
@@ -130,7 +132,11 @@ const deletePost = asyncHandler(async (req, res) => {
     await deleteFromCloudinary(file.public_id);
   }
 
-  await Post.findByIdAndDelete(postId);
+  await Comment.deleteMany({ post: postId });
+
+  await Like.deleteMany({ post: postId });
+
+  await post.deleteOne();
 
   return res.status(200).json(new ApiResponse(200, {}, "Post is deleted"));
 });
