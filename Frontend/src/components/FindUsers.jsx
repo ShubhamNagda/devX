@@ -3,7 +3,7 @@ import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import UserProfile from "./UserProfile";
 import UserIcon  from "../assets/UserIcon.svg";
-import Nav from "./NavForMobile";
+import Nav from "./navForMobile";
 
 const FindUsers = () =>{
     const [selectedUser, setSelectedUser] = useState(null);
