@@ -99,7 +99,8 @@ const getPostComments = asyncHandler(async (req, res) => {
     .populate("owner", "fullName profile")
     .sort({ createdAt: -1 });
 
-  console.log(comments[0].owner);
+  console.log("===== COMMENTS =====");
+  console.log(JSON.stringify(comments, null, 2));
 
   return res
     .status(200)
