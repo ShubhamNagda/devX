@@ -63,6 +63,7 @@ const CommentOfPost = ({post}) =>{
     return(
             <div className="flex flex-col w-full gap-2 mb-16 justify-center items-center mt-0 ">
             {comments.map((comment)=>{
+                {console.log(import.meta.env.VITE_API_URL_COMMENTS); console.log(import.meta.env.VITE_API_URL_POSTS);}
                 return(
                     <div key={comment._id} className="relative w-11/12 bg-[#1c2F3E] p-3 rounded-xl">
                         <div className="flex gap-4">
