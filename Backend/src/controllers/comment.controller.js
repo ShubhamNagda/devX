@@ -80,7 +80,6 @@ const updateComment = asyncHandler(async (req, res) => {
 });
 
 const getPostComments = asyncHandler(async (req, res) => {
-  console.log("Got request")
   const { postId } = req.params;
   if (!postId) {
     throw new ApiError(400, "Post id is required");
