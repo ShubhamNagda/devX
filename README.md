@@ -115,18 +115,6 @@ The project was built to gain hands-on experience with full-stack development, R
 
 # Screenshots
 
-Create a folder named **screenshots** in the root directory and place your images inside it.
-
-```
-screenshots/
-│
-├── login.png
-├── signup.png
-├── home.png
-├── search.png
-└── create-post.png
-```
-
 ## Login
 
 ![Login](./screenshots/login.png)
@@ -394,7 +382,6 @@ Cloudinary
 - Real-time notifications
 - Direct messaging
 - Infinite scrolling
-- Dark mode
 - Email verification
 - Password reset
 - Bookmark posts
