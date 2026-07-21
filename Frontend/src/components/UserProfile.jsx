@@ -34,6 +34,7 @@ const UserProfile = ({ searchedUser, onBack }) => {
     },[searchedUser?._id])
 
     const follow = async (userIdToFollow) => {
+        setFollowStatus(true)
         try {
             const isdone = await axios.post(`${import.meta.env.VITE_API_URL_FOLLOWS}/${userIdToFollow}`,
                 {},
@@ -41,20 +42,19 @@ const UserProfile = ({ searchedUser, onBack }) => {
                     withCredentials:true
                 }
             )
-            setFollowStatus(true)
             
         } catch (error) {
             console.error("error to follow", error); 
         }
     }
     const unfollow = async (userIdToFollow) => {
+            setFollowStatus(false)
         try {
             const isdone = await axios.delete(`${import.meta.env.VITE_API_URL_FOLLOWS}/${userIdToFollow}`,
                 {
                     withCredentials:true
                 }
             )
-            setFollowStatus(false)
             
         } catch (error) {
             console.error("error to follow", error); 
