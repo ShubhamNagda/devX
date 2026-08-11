@@ -29,24 +29,44 @@ const Login = () =>{
     }
 
     return(
-        <div className="flex justify-center items-center bg-[#131921] h-screen w-full">
-            <div className="flex flex-col justify-center bg-[#232F3E] h-4/6 lg:h-10/12 lg:p-10 pl-5 pr-5 pt-10  rounded-4xl w-11/12 lg:w-2/6">
-                <form className="flex flex-col w-full h-12/12 gap-5" onSubmit={fetchUser}>
-                    <h1 className="text-[#ffffff] font-bold text-2xl">Login:</h1>
-                    <div className="w-12/12 flex justify-center text-[#ffffff]">
-                        <CircleUser size={55} strokeWidth={1.5} className=""/>
-                    </div>
-                    <input type="email" name="email" id="" className="bg-[#EAEDED] h-12 rounded-4xl p-5 outline-none hover:bg-[#cac9c9]" placeholder="email:" value={email} onChange={(e)=> setEmail(e.target.value)}/>
-                    <input type="password" name="password" id="" className="bg-[#EAEDED] h-12 rounded-4xl p-5 outline-none hover:bg-[#cac9c9]" placeholder="password:" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                    {err ? <h1 className="text-red-600">Invalid credentials</h1>: <div></div>}
-                    <input type="submit" value="Submit" className="bg-blue-400 text-[#ffffff] font-bold h-12 pb-2 pt-2 rounded-4xl p-5 outline-none cursor-pointer active:scale-95 "/>
-                    <div className="flex gap-3 w-full justify-center">
-                        <p className="text-[#ffffff] pl-2">new user? </p> 
-                        <Link to='/signup' className="text-[#00a2ff]"> Sign Up &gt; </Link>
-                    </div>
-                </form>
+<div className="flex justify-center items-center bg-[url('./assets/background.svg')] h-screen w-full ">
+    <div className="flex flex-col justify-center bg-[rgba(38,47,61,0.66)] h-4/6 lg:h-10/12 lg:p-10 pl-5 pr-5 pt-10  rounded-4xl w-11/12 lg:w-2/6 shadow-2xl shadow-gray-800 ">
+        <form className="flex flex-col w-full h-12/12 gap-5 text-[#242222]" onSubmit={fetchUser}>
+            <h1 className="text-[#ffffff] font-bold text-2xl">Login:</h1>
+            <div className="w-12/12 flex justify-center text-[#ffffff]">
+                <CircleUser size={55} strokeWidth={1.5} className=""/>
             </div>
-        </div>
+            <input
+                type="email"
+                name="email"
+                id=""
+                className="bg-[rgba(249,252,252,0.73)] h-12 rounded-4xl p-5 outline-none hover:bg-[rgba(231,227,227,0.75)]]"
+                placeholder="email:"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+                type="password"
+                name="password"
+                id=""
+                className="bg-[rgba(249,252,252,0.73)] h-12 rounded-4xl p-5 outline-none hover:bg-[rgba(231,227,227,0.75)]"
+                placeholder="password:"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+            />
+            {err ? <h1 className="text-red-300">Invalid credentials</h1> : <div></div>}
+            <input
+                type="submit"
+                value="Submit"
+                className="bg-[rgba(8,0,253,0.73)] text-[#ffffff] font-bold h-12 pb-2 pt-2 rounded-4xl p-5 outline-none cursor-pointer active:scale-95 "
+            />
+            <div className="flex gap-3 w-full justify-center">
+                <p className="text-[#ffffff] pl-2">new user? </p>
+                <Link to='/signup' className="text-[#00a2ff] font-bold text-shadow-2xl text-shadow-gray-950 "> Sign Up &gt; </Link>
+            </div>
+        </form>
+    </div>
+</div>
     )
 }
 
