@@ -3,7 +3,7 @@ import UserContext from "../context/UserContext";
 import { ImagePlus } from "lucide-react";
 import axios from "axios";
 
-const UploadPost = ({ onBack }) => {
+const UploadPost = () => {
   const [user, _] = useContext(UserContext);
   const [images, setImages] = useState([]);
   const [content, setContent] = useState("")
@@ -19,13 +19,13 @@ const UploadPost = ({ onBack }) => {
     if(!content && !images.length > 0){
       setErr(true)
     }
-  try {
-    const formData = new FormData();
+    try {
+      const formData = new FormData();
 
-    formData.append("content", content);
+      formData.append("content", content);
 
-    images.forEach((image) => {
-      formData.append("images", image);
+      images.forEach((image) => {
+        formData.append("images", image);
     });
 
     const res = await axios.post(
@@ -43,23 +43,15 @@ const UploadPost = ({ onBack }) => {
   }
 
   return (
-    <div className="relative w-full h-screen text-white overflow-hidden">
+    <div className="relative pt-15 w-full h-11/12 rounded-xl border border-white/30 backdrop-blur-2xl backdrop-saturate-150 text-white overflow-hidden bg-[#d4cfcf15]">
       {err ? <h1 className="text-red-600">Must required content or atleast one image </h1>: <div></div>}
-      <div className="p-4">
-        <h1
-          onClick={onBack}
-          className="cursor-pointer active:scale-95"
-        >
-          ← Back
-        </h1>
-      </div>
-
       <div className="flex flex-col items-center gap-3">
         <textarea
+          autoFocus
           placeholder="Write here"
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          className="w-11/12 bg-[#1c2633] p-2 rounded-xl outline-none resize-none h-30"
+          className="w-11/12 rounded-xl border p-2 border-white/30 backdrop-blur-2xl backdrop-saturate-150 outline-none resize-none h-30"
         />
 
         <input

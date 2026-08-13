@@ -38,13 +38,13 @@ const UserPosts = ({selectedUser}) =>{
         <div className="flex flex-col w-full gap-5">
         {posts.map((post)=>{
             return(
-                <div key={post._id} className="relative pb-12 w-full flex flex-col gap-5 h-full bg-[#1c2633] rounded-2xl ">
+                <div key={post._id} className="relative pb-12 w-full flex flex-col gap-5 h-full bg-[#d4cfcf15] backdrop-blur-2xl backdrop-saturate-150 border border-white/30 rounded-2xl ">
                     <div className="">
                         <div className="flex flex-nowrap">
                             <img src={post.owner?.profile?.url ? post.owner?.profile?.url : UserIcon} alt="" className="w-16 h-16 object-center object-cover p-2 rounded-full min-h-12/12"/>
                             <div className="flex flex-col gap-0 w-12/12">
                                 <h1 className="m-0 mt-1.5 font-bold">{post.owner.fullName}</h1>
-                                <p className="m-0 text-gray-500 font-normal">
+                                <p className="m-0 text-[#e4d8d8d4] font-normal">
                                     {new Date(post.createdAt).toLocaleString("en-IN", {
                                         day: "numeric",
                                         month: 'short',

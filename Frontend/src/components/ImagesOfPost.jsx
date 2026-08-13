@@ -24,7 +24,7 @@ function ImagesOfPost({ images }) {
             <img
               src={image.url}
               alt={`Post ${index + 1}`}
-              className="w-11/12 max-h-125 object-cover rounded-2xl"
+              className="min-w-fit max-w-full max-h-125 object-cover"
             />
           </div>
         ))}

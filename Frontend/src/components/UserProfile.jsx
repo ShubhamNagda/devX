@@ -62,19 +62,19 @@ const UserProfile = ({ searchedUser, onBack }) => {
     }
 
   return (
-    <div className="text-white w-full">
+    <div className=" overflow-y-scroll no-scrollbar border h-11/12 border-white/30 backdrop-blur-2xl backdrop-saturate-150 text-white w-full bg-[#d4cfcf15] rounded-xl">
       {checkFollowers ? <Followers onBack={() => setCheckFollowers(null)} user={searchedUser} /> : checkFollowings ? <Followings onBack={()=> setCheckFollowings(null)} user={searchedUser}/> :
       <div className="p-2">
         <button onClick={onBack} className="mb-4 cursor-pointer active:scale-95">
         ← Back
       </button>
-      <div className="flex w-full gap-3">
+      <div className="flex w-full gap-3 justify-start">
         <img
             src={searchedUser.profile?.url ? searchedUser.profile?.url : UserIcon}
             alt={searchedUser.fullName}
-            className="w-25 h-25 rounded-2xl object-cover object-center mx-auto"
+            className="w-25 h-25 rounded-full object-cover object-center"
         />
-        <div className="flex flex-wrap pl-4">
+        <div className="flex flex-col flex-wrap pl-4">
              <div className="flex flex-col">
                 <h1 className="text-[15px] font-bold">
                     {searchedUser.fullName}
@@ -85,11 +85,11 @@ const UserProfile = ({ searchedUser, onBack }) => {
              </div>
             <div className="flex gap-10 text-center text-[14px] text-[#d6dae2]">
                 <div className="flex flex-col cursor-pointer" onClick={() => setCheckFollowers(searchedUser)}>
-                    <p>{searchedUser.followers}</p>
+                    <p>{searchedUser.followers ? searchedUser.followers : 0}</p>
                     <p>followers</p>
                 </div>
                 <div className="flex flex-col cursor-pointer" onClick={() => setCheckFollowings(searchedUser)}>
-                    <p>{searchedUser.following}</p>
+                    <p>{searchedUser.following ? searchedUser.following : 0}</p>
                     <p>following</p>
                 </div>
             </div>

@@ -8,7 +8,7 @@ const PostContent = ({post, setPosts}) =>{
         const [editedContent, setEditedContent] = useState("");
         const [user,_] = useContext(UserContext)
 
-        const savePost = async (postId) => {
+    const savePost = async (postId) => {
     try {
         await axios.patch(
             `${import.meta.env.VITE_API_URL_POSTS}/updatepost/${postId}`,
@@ -64,19 +64,23 @@ const PostContent = ({post, setPosts}) =>{
                 <div className="absolute right-2 top-2 cursor-pointer">
                     <SquarePen
                         strokeWidth={1.5}
-                        onClick={() => {
+                        onClick={() =>{ if (editingPostId === null) {
                             setEditingPostId(post._id);
                             setEditedContent(post.content);
-                        }}
+                        } else {
+                            setEditingPostId(null);
+                            setEditedContent("");
+                        }}}
                         />
                 </div>
             )}
             {editingPostId === post._id ? (
                 <div className="flex flex-col gap-2">
                     <textarea
+                        autoFocus
                         value={editedContent}
                         onChange={(e) => setEditedContent(e.target.value)}
-                        className="w-full h-30 p-2 rounded outline-none resize-none text-[#ffffff] no-scrollbar bg-[#2c3c52]"
+                        className="w-full h-30 p-2 rounded-xl outline-none resize-none text-[#ffffff] no-scrollbar backdrop-blur-2xl border bg-[#d4cfcf15]"
                     />
 
                     <div className="flex gap-2">
@@ -87,15 +91,6 @@ const PostContent = ({post, setPosts}) =>{
                             Save
                         </button>
 
-                        <button
-                            onClick={() => {
-                                setEditingPostId(null);
-                                setEditedContent("");
-                            }}
-                            className="px-3 py-1 bg-gray-600 rounded cursor-pointer active:scale-95"
-                        >
-                            Cancel
-                        </button>
                         <button
                             onClick={() => deletePost(post._id)}
                             className="px-3 py-1 bg-red-600 rounded cursor-pointer active:scale-95"

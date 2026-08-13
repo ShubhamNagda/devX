@@ -1,22 +1,32 @@
+import NavBar from "../components/NavBar";
+import FIndUsers from "../components/FindUsers"
+import { useContext, useState } from "react";
 import FindUsers from "../components/FindUsers";
-import MainPosts from "../components/MainPosts";
-import Nav from "../components/NavForMobile";
-import User from "../components/User";
+import UploadPost from "../components/UploadPost";
+import UserProfile from "../components/UserProfile";
+import NavigationContext from "../context/NavigationContext";
+import UserContext from "../context/UserContext";
+import AllPosts from "../components/AllPosts";
+
 
 const Home = () =>{
+    const[user,_] = useContext(UserContext)
+    const[navigation, setNavigation] = useContext(NavigationContext);
     return(
         <div>
-            <Nav />
-            <div className="flex w-full gap-0.5 h-full bg-[#a4a1a8] justify-center">
-                    <div className="w-3/12 hidden lg:flex">
-                        <User />
+            <div className="flex w-full gap-0 h-screen bg-[url('./assets/background.svg')] justify-around">
+                    <div className="w-3/12 hidden lg:flex lg:items-center pt-0.5 pb-0.5">
+                        <NavBar navigation={navigation} setNavigation={setNavigation}/>
                     </div>
-                    <div className="w-full lg:w-6/12">
-                        <MainPosts />
+                    <div className="w-11/12 lg:w-4/6 flex items-center pt-0.5 pb-0.5 ">
+                        {navigation === "Home" ? <AllPosts /> :
+                            navigation === "Search" ? <FindUsers /> : 
+                                navigation === "Follow" ? " " :
+                                    navigation === "MitraAI" ? " " :
+                                        navigation === "Profile" ? <UserProfile searchedUser={user}/>:
+                                            navigation === "PostBtn" ? <UploadPost /> : <PostContainer />
+                        }
                     </div>
-                    <div className="w-3/12 hidden lg:flex">
-                        <FindUsers />
-                    </div >
             </div>
         </div>
     )

@@ -1,26 +1,232 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+<svg
+  width="128"
+  height="128"
+  viewBox="0 0 128 128"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
   <defs>
-    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#4F46E5"/>
-      <stop offset="100%" stop-color="#06B6D4"/>
+
+    <linearGradient
+      id="bg"
+      x1="18"
+      y1="10"
+      x2="110"
+      y2="118"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stop-color="#7C3AED"/>
+      <stop offset="0.5" stop-color="#EC4899"/>
+      <stop offset="1" stop-color="#F97316"/>
     </linearGradient>
+
+    <linearGradient
+      id="frame"
+      x1="20"
+      y1="20"
+      x2="108"
+      y2="108"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#FFD6F0"/>
+    </linearGradient>
+
+    <linearGradient
+      id="face"
+      x1="45"
+      y1="38"
+      x2="85"
+      y2="88"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stop-color="#FFF5EA"/>
+      <stop offset="1" stop-color="#FFD0B0"/>
+    </linearGradient>
+
+    <filter
+      id="glow"
+      x="-30%"
+      y="-30%"
+      width="160%"
+      height="160%"
+    >
+      <feGaussianBlur stdDeviation="2.5"/>
+    </filter>
+
   </defs>
 
-  <rect width="128" height="128" rx="64" fill="#111827"/>
-
-  <circle cx="64" cy="45" r="18" fill="#D1D5DB"/>
-
-  <path
-    d="M32 102c0-18 14-30 32-30s32 12 32 30"
-    fill="#D1D5DB"
-  />
-
+  <!-- Background -->
   <circle
     cx="64"
     cy="64"
-    r="61"
-    fill="none"
-    stroke="url(#g)"
-    stroke-width="3"
+    r="60"
+    fill="url(#bg)"
   />
+
+  <!-- Decorative orbit -->
+  <path
+    d="
+      M64 8
+      C95 8 119 32 119 64
+      C119 96 95 120 64 120
+      C33 120 9 96 9 64
+      C9 32 33 8 64 8
+    "
+    stroke="#FFFFFF"
+    stroke-opacity="0.18"
+    stroke-width="2"
+  />
+
+  <!-- Hexagonal identity frame -->
+  <path
+    d="
+      M64 20
+      L96 38
+      L96 74
+      L64 94
+      L32 74
+      L32 38
+      Z
+    "
+    fill="#FFFFFF"
+    fill-opacity="0.10"
+    stroke="url(#frame)"
+    stroke-opacity="0.65"
+    stroke-width="2.5"
+  />
+
+  <!-- Face -->
+  <path
+    d="
+      M48 48
+      C48 39 54 34 64 34
+      C74 34 80 39 80 48
+      V58
+      C80 68 74 75 64 75
+      C54 75 48 68 48 58
+      Z
+    "
+    fill="url(#face)"
+  />
+
+  <!-- Hair -->
+  <path
+    d="
+      M48 49
+      C48 39 54 32 64 32
+      C74 32 81 39 81 49
+      L75 45
+      L70 48
+      L64 42
+      L57 48
+      L52 44
+      Z
+    "
+    fill="#27152F"
+  />
+
+  <!-- Eyes -->
+  <circle
+    cx="57"
+    cy="55"
+    r="2.5"
+    fill="#7C3AED"
+  />
+
+  <circle
+    cx="71"
+    cy="55"
+    r="2.5"
+    fill="#7C3AED"
+  />
+
+  <!-- Face connection -->
+  <path
+    d="M61 64H67"
+    stroke="#EC4899"
+    stroke-width="2.5"
+    stroke-linecap="round"
+  />
+
+  <!-- Body -->
+  <path
+    d="
+      M42 88
+      C45 78 53 74 64 74
+      C75 74 83 78 86 88
+      L92 91
+      V94
+      H36
+      V91
+      Z
+    "
+    fill="#FFF5EA"
+  />
+
+  <!-- Network nodes -->
+  <circle
+    cx="24"
+    cy="42"
+    r="4"
+    fill="#FFFFFF"
+  />
+
+  <circle
+    cx="104"
+    cy="42"
+    r="4"
+    fill="#FFFFFF"
+  />
+
+  <circle
+    cx="24"
+    cy="82"
+    r="4"
+    fill="#FFD6F0"
+  />
+
+  <circle
+    cx="104"
+    cy="82"
+    r="4"
+    fill="#FFD6F0"
+  />
+
+  <!-- Network lines -->
+  <path
+    d="M28 42L32 42"
+    stroke="#FFFFFF"
+    stroke-opacity="0.6"
+    stroke-width="2"
+  />
+
+  <path
+    d="M96 42L100 42"
+    stroke="#FFFFFF"
+    stroke-opacity="0.6"
+    stroke-width="2"
+  />
+
+  <path
+    d="M28 82L32 78"
+    stroke="#FFFFFF"
+    stroke-opacity="0.5"
+    stroke-width="2"
+  />
+
+  <path
+    d="M96 78L100 82"
+    stroke="#FFFFFF"
+    stroke-opacity="0.5"
+    stroke-width="2"
+  />
+
+  <!-- Small DevX diamond -->
+  <path
+    d="M64 101L70 107L64 113L58 107Z"
+    fill="#FFFFFF"
+    fill-opacity="0.8"
+  />
+
 </svg>

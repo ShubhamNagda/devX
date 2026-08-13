@@ -3,8 +3,8 @@ import { useContext, useEffect, useState } from "react"
 import UserContext from "../context/UserContext"
 import UserIcon from "../assets/UserIcon.svg"
 import axios from "axios"
-const CommentOfPost = ({post}) =>{
-    
+import NavigationContext from "../context/NavigationContext"
+const CommentOfPost = ({post, setSelectedUser}) =>{
     const [comments, setComments] = useState([])
     const [user, _] = useContext(UserContext)
     const[editedContent, setEditedContent] = useState("")
@@ -61,19 +61,20 @@ const CommentOfPost = ({post}) =>{
         }
     }
     return(
-            <div className="flex flex-col w-full gap-2 mb-16 justify-center items-center mt-0 ">
+            <div className="flex flex-col w-full gap-2 mb-16 justify-center items-center mt-0 transition-all duration-700 ease-in-out">
             {comments.map((comment)=>{
                 return(
-                    <div key={comment._id} className="relative w-11/12 bg-[#1c2F3E] p-3 rounded-xl">
-                        <div className="flex gap-4">
+                    <div key={comment._id} className="relative w-full border-2 border-white/30 shadow-2xl shadow-blue-950/20 ring-1 ring-white/10 p-3 rounded-xl">
+                        <div className="flex gap-4 cursor-pointer" onClick={()=> setSelectedUser(comment.owner)}>
                             <img 
                                 src={ comment.owner.profile?.url ? comment.owner.profile?.url : UserIcon} 
                                 alt=""
                                 className="w-10 h-10 rounded-full object-center object-cover"
+
                             />
                             <div>
                                 <h1 className="text-[15px]">{comment.owner.fullName}</h1>
-                                <p className="text-gray-500 text-sm">
+                                <p className="text-[#9a9696] text-sm">
                                     {new Date(comment.createdAt).toLocaleString("en-IN", {
                                         day: "numeric",
                                         month: 'short',
@@ -82,11 +83,12 @@ const CommentOfPost = ({post}) =>{
                                 </p>
                             </div>
                         </div>
-                        <div className="w-full">
+                        <div className="w-full transition-all duration-300 ease-in-out">
                             {editingCommentId === comment._id ?
-                                <div className="flex flex-col gap-4 w-full bg-[#1c2F3E] p-3 rounded-xl">
+                                <div className="flex flex-col w-full transition-all duration-300 ease-in-out">
                                     <textarea 
-                                        className="w-full h-20 rounded-xl p-2 resize-none bg-[#334a5f] outline-none "
+                                        autoFocus
+                                        className="w-full rounded-xl resize-none outline-none caret-red-600 "
                                         name="content" 
                                         id=""
                                         value={editedContent}
@@ -100,13 +102,6 @@ const CommentOfPost = ({post}) =>{
                                             value="update" 
                                             className="bg-blue-600 p-2 rounded-xl cursor-pointer active:scale-95"
                                         />
-
-                                        <button
-                                            onClick={()=> setEditingCommentId(null)}
-                                            className="bg-gray-600 p-2 rounded-xl cursor-pointer active:scale-95"
-                                        >Cancel
-
-                                        </button>
 
                                         <button
                                             onClick={()=> deleteComment(comment._id)}
@@ -124,7 +119,7 @@ const CommentOfPost = ({post}) =>{
                             comment.owner._id === user._id 
                                 ? <div 
                                     className="absolute top-2 right-2 cursor-pointer" 
-                                    onClick={() => {setEditedContent(comment.content); setEditingCommentId(comment._id)}}
+                                    onClick={() => {setEditedContent(comment.content); editingCommentId !== null ? setEditingCommentId(null) : setEditingCommentId(comment._id)}}
                                 >
                                     <SquarePen  />
                                 </div>
