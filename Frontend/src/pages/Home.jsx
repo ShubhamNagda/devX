@@ -24,7 +24,7 @@ const Home = () =>{
                                 navigation === "Follow" ? " " :
                                     navigation === "MitraAI" ? " " :
                                         navigation === "Profile" ? <UserProfile searchedUser={user} onBack={() => setNavigation("Home")} />:
-                                            navigation === "PostBtn" ? <UploadPost /> : <PostContainer />
+                                            navigation === "PostBtn" ? <UploadPost onBack={() => setNavigation("Home")} /> : <PostContainer />
                         }
                     </div>
             </div>

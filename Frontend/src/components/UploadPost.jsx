@@ -3,7 +3,7 @@ import UserContext from "../context/UserContext";
 import { ImagePlus } from "lucide-react";
 import axios from "axios";
 
-const UploadPost = () => {
+const UploadPost = ({onBack}) => {
   const [user, _] = useContext(UserContext);
   const [images, setImages] = useState([]);
   const [content, setContent] = useState("")
