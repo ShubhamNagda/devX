@@ -144,7 +144,7 @@ const deletePost = asyncHandler(async (req, res) => {
 const getAllPosts = asyncHandler(async (req, res) => {
   const allPosts = await Post.find()
     .sort({ createdAt: -1 })
-    .populate("owner", "fullName profile")
+    .populate("owner", "-refreshToken -password")
     .lean();
 
   const postIds = allPosts.map((post) => post._id);

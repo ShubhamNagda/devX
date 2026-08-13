@@ -42,7 +42,7 @@ const AllPosts = () =>{
 
     if(loading){
         return(
-            <div className="text-[#ffffff] flex justify-center items-center h-full bg-[#d4cfcf15] border border-white/30 backdrop-blur-2xl backdrop-saturate-150">
+            <div className="text-[#ffffff] w-full flex justify-center items-center h-full bg-[#d4cfcf15] border border-white/30 backdrop-blur-2xl backdrop-saturate-150">
                 <h1>Loading....</h1>
             </div>
         )
