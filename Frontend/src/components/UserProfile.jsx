@@ -7,6 +7,7 @@ import Followers from "./Followers";
 import Followings from "./Following";
 
 const UserProfile = ({ searchedUser, onBack }) => {
+    const[selectedUser, setSelectedUser] = useState(null)
     const[checkFollowings, setCheckFollowings] = useState(null)
     const[checkFollowers, setCheckFollowers] = useState(null)
 
@@ -62,6 +63,7 @@ const UserProfile = ({ searchedUser, onBack }) => {
     }
 
   return (
+    selectedUser !== null ? <UserProfile searchedUser={selectedUser} onBack={() => setSelectedUser(null)} /> :
     <div className=" overflow-y-scroll no-scrollbar border h-11/12 border-white/30 backdrop-blur-2xl backdrop-saturate-150 text-white w-full bg-[#d4cfcf15] rounded-xl">
       {checkFollowers ? <Followers onBack={() => setCheckFollowers(null)} user={searchedUser} /> : checkFollowings ? <Followings onBack={()=> setCheckFollowings(null)} user={searchedUser}/> :
       <div className="p-2">
@@ -104,7 +106,7 @@ const UserProfile = ({ searchedUser, onBack }) => {
             </button>}
 
             <div className="mt-5">
-                <UserPosts selectedUser={searchedUser}/>
+                <UserPosts selectedUser={searchedUser} setSelectedUser={setSelectedUser}/>
             </div>
       </div>
       }

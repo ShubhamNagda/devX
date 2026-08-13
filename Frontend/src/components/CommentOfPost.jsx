@@ -65,7 +65,7 @@ const CommentOfPost = ({post, setSelectedUser}) =>{
             {comments.map((comment)=>{
                 return(
                     <div key={comment._id} className="relative w-full border-2 border-white/30 shadow-2xl shadow-blue-950/20 ring-1 ring-white/10 p-3 rounded-xl">
-                        <div className="flex gap-4 cursor-pointer" onClick={()=> setSelectedUser(comment.owner)}>
+                        <div className="flex gap-4 cursor-pointer " onClick={()=> setSelectedUser(comment.owner)}>
                             <img 
                                 src={ comment.owner.profile?.url ? comment.owner.profile?.url : UserIcon} 
                                 alt=""

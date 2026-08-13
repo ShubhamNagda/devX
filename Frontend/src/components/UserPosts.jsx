@@ -6,8 +6,9 @@ import ImagesOfPost from "./ImagesOfPost"
 import LikePost from "./LikePost"
 import CommentOfPost from "./CommentOfPost"
 import { MessageSquare } from "lucide-react"
+import UserProfile from "./UserProfile"
 
-const UserPosts = ({selectedUser}) =>{
+const UserPosts = ({selectedUser ,setSelectedUser}) =>{
     const [posts, setPosts] = useState([])
     const [activeCommentPostId, setActiveCommentPostId] = useState(null)
 
@@ -66,7 +67,7 @@ const UserPosts = ({selectedUser}) =>{
                             </div>
                         </div>
                         <div>
-                            {activeCommentPostId === post._id && (<CommentOfPost post={post} />)}
+                            {activeCommentPostId === post._id && (<CommentOfPost post={post} setSelectedUser={setSelectedUser}/>)}
                         </div>
                     </div>
                 </div>
