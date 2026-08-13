@@ -8,6 +8,7 @@ const UploadPost = ({onBack}) => {
   const [images, setImages] = useState([]);
   const [content, setContent] = useState("")
   const [err, setErr] = useState(false)
+  const[uploading,setUploading] = useState(false)
 
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files || []);
@@ -35,7 +36,6 @@ const UploadPost = ({onBack}) => {
         withCredentials: true,
       }
     );
-
     onBack(); 
   } catch (error) {
     console.error(error);
@@ -43,6 +43,9 @@ const UploadPost = ({onBack}) => {
   }
 
   return (
+    uploading ? <div className="flex justify-center font-bold items-center pt-15 w-full h-11/12 rounded-xl border border-white/30 backdrop-blur-2xl backdrop-saturate-150 text-white overflow-hidden bg-[#d4cfcf15]">
+      <h1>Uploading...</h1>
+    </div>:
     <div className="relative pt-15 w-full h-11/12 rounded-xl border border-white/30 backdrop-blur-2xl backdrop-saturate-150 text-white overflow-hidden bg-[#d4cfcf15]">
       {err ? <h1 className="text-red-600">Must required content or atleast one image </h1>: <div></div>}
       <div className="flex flex-col items-center gap-3">
@@ -57,7 +60,7 @@ const UploadPost = ({onBack}) => {
         <input
           type="submit"
           value="Post"
-          onClick={upload}
+          onClick={() => {upload(),  setUploading(true)}}
           className="absolute top-3 right-7 bg-blue-600 p-2 px-4 rounded-xl cursor-pointer active:scale-95"
         />
 
