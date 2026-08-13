@@ -2,7 +2,6 @@ import FindUsers from "./components/FindUsers";
 import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import User from "./components/User";
 import Protected from "./pages/Protected";
 import SignUp from "./pages/SignUp";
 import {BrowserRouter, Routes, Route} from "react-router-dom";

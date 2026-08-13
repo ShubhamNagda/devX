@@ -20,10 +20,10 @@ const Home = () =>{
                     </div>
                     <div className="w-11/12 lg:w-4/6 flex items-center pt-0.5 pb-0.5 ">
                         {navigation === "Home" ? <AllPosts /> :
-                            navigation === "Search" ? <FindUsers /> : 
+                            navigation === "Search" ? <FindUsers onBack={() => setNavigation("Home")} /> : 
                                 navigation === "Follow" ? " " :
                                     navigation === "MitraAI" ? " " :
-                                        navigation === "Profile" ? <UserProfile searchedUser={user}/>:
+                                        navigation === "Profile" ? <UserProfile searchedUser={user} onBack={() => setNavigation("Home")} />:
                                             navigation === "PostBtn" ? <UploadPost /> : <PostContainer />
                         }
                     </div>

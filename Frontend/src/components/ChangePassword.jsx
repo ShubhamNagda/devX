@@ -20,14 +20,14 @@ const ChangePassword = () =>{
     return(
         <div className="text-[#ffffff] mt-2 w-full">
             <h1>Change Password:</h1>
-            <div className="w-full flex flex-col justify-center items-center mt-4 gap-3">
+            <div className="w-full flex flex-col bg-[#d4cfcf15] p-2 rounded-2xl border border-white/30 justify-center items-center mt-4 gap-3">
                 <input 
                     type="text" 
                     name="oldPassword"
                     placeholder="old password"
                     value={oldPassword} 
                     onChange={(e) => setOldPassword(e.target.value)}
-                    className="p-2 outline-none border-2 border-[#ffffff] rounded-xl w-11/12"
+                    className="p-2 outline-none border border-white/30 rounded-xl w-11/12"
                 />
                 <input 
                     type="text" 
@@ -35,7 +35,7 @@ const ChangePassword = () =>{
                     placeholder="new password"
                     value={newPassword} 
                     onChange={(e) => setNewPassword(e.target.value)}
-                    className="p-2 outline-none border-2 border-[#ffffff] rounded-xl w-11/12"
+                    className="p-2 outline-none border border-white/30 rounded-xl w-11/12"
                 />
                 <button 
                     type="submit" 

@@ -5,6 +5,8 @@ import UserContext from "../context/UserContext";
 import UserPosts from "./UserPosts";
 import Followers from "./Followers";
 import Followings from "./Following";
+import EditProfile from "./EditProfile";
+import {UserRoundCog} from "lucide-react"
 
 const UserProfile = ({ searchedUser, onBack }) => {
     const[selectedUser, setSelectedUser] = useState(null)
@@ -13,7 +15,8 @@ const UserProfile = ({ searchedUser, onBack }) => {
 
     const [user, setUser] = useContext(UserContext)
     const [followStatus, setFollowStatus] = useState(false);
-
+    const[editProfile, setEditProfile] = useState(null)
+    
     useEffect(()=>{
         const checkFollowStatus = async () =>{
 
@@ -63,6 +66,7 @@ const UserProfile = ({ searchedUser, onBack }) => {
     }
 
   return (
+    editProfile !== null ? <EditProfile onBack={() => setEditProfile(null)}/> :
     selectedUser !== null ? <UserProfile searchedUser={selectedUser} onBack={() => setSelectedUser(null)} /> :
     <div className=" overflow-y-scroll no-scrollbar border h-11/12 border-white/30 backdrop-blur-2xl backdrop-saturate-150 text-white w-full bg-[#d4cfcf15] rounded-xl">
       {checkFollowers ? <Followers onBack={() => setCheckFollowers(null)} user={searchedUser} /> : checkFollowings ? <Followings onBack={()=> setCheckFollowings(null)} user={searchedUser}/> :
@@ -98,9 +102,12 @@ const UserProfile = ({ searchedUser, onBack }) => {
         </div>
     </div>
         {user?._id == searchedUser?._id ?
-         <button disabled className="cursor-not-allowed bg-blue-600 mt-4 p-2 w-25 rounded-2xl">
-            follow
+         <div className="flex gap-4 items-center">
+            <button disabled className="cursor-not-allowed bg-blue-600 mt-4 p-2 w-25 rounded-2xl">
+                follow
             </button>
+            <button className=" cursor-pointer absolute right-3 top-3 backdrop-blur-2xl backdrop-saturate-150 hover:border hover:border-white/30 bg-[#0734fd15] mt-4 p-2 w-25 rounded-2xl flex justify-center" title="edit profile" onClick={() => setEditProfile(user._id)}> <UserRoundCog /> </button>   
+         </div>
           :<button onClick={followStatus ? () => unfollow(searchedUser._id) : () => follow(searchedUser._id)} className="bg-blue-600 mt-4 p-2 rounded-2xl cursor-pointer w-25 active:scale-95">
             {followStatus ? "Unfollow" : "follow"}
             </button>}
@@ -108,6 +115,7 @@ const UserProfile = ({ searchedUser, onBack }) => {
             <div className="mt-5">
                 <UserPosts selectedUser={searchedUser} setSelectedUser={setSelectedUser}/>
             </div>
+            
       </div>
       }
     </div>

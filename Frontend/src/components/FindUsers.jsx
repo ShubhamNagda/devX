@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import UserProfile from "./UserProfile";
 import UserIcon  from "../assets/UserIcon.svg";
 
-const FindUsers = () =>{
+const FindUsers = ({onBack}) =>{
     const [selectedUser, setSelectedUser] = useState(null);
     const [friends, setFriends] = useState([]);
     const[name, setName] = useState("")
@@ -31,7 +31,10 @@ const FindUsers = () =>{
     }
 
     return(
-    <div className="w-full h-11/12 lg:flex rounded-xl bg-[#d4cfcf00] backdrop-blur-2xl backdrop-saturate-150 border border-white/30">
+    <div className="relative w-full h-11/12 lg:flex rounded-xl bg-[#d4cfcf00] backdrop-blur-2xl backdrop-saturate-150 border border-white/30">
+        <button onClick={onBack} className=" absolute top-2 left-2 text-white cursor-pointer active:scale-95">
+        ← Back
+        </button>
         {selectedUser ? (
             <div className="w-full h-full [&>div]:h-full!">
                 <UserProfile

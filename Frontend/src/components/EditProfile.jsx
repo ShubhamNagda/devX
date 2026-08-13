@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import UserContext from "../context/UserContext";
 import UserIcon from "../assets/UserIcon.svg"
-import { PencilLine } from "lucide-react";
+import { Camera } from "lucide-react";
 import axios from "axios";
 import Logout from "./Logout";
 import ChangePassword from "./ChangePassword";
@@ -48,7 +48,7 @@ const EditProfile = ({onBack}) =>{
     }
 
     return(
-        <div className="m-4 relative">
+        <div className="p-2 h-11/12 overflow-y-scroll no-scrollbar rounded-2xl border border-white/30 backdrop-blur-2xl backdrop-saturate-150 relative flex w-full flex-col bg-[#d4cfcf15]">
             <div className="w-full flex justify-end">
                 <Logout />
             </div>
@@ -56,9 +56,9 @@ const EditProfile = ({onBack}) =>{
             <div className="flex w-full justify-center">
                 <div className="relative flex flex-col">
                     <img src={preview ? preview : user.profile?.url ? user.profile.url : UserIcon} alt={user.fullName} className="w-30 h-30 object-center object-cover rounded-full"/>
-                    <div className="absolute bottom-10 right-2 text-[#ffffff] cursor-pointer"> 
+                    <div className="absolute bottom-23 right-12 text-[#ffffff] cursor-pointer"> 
                         <label className="cursor-pointer">
-                            <PencilLine className="w-6 h-6 text-white"/>
+                            <Camera strokeWidth={3} className="w-6 h-6 text-black hover:scale-95 font-bold "/>
 
                             <input
                                 type="file"
@@ -71,10 +71,11 @@ const EditProfile = ({onBack}) =>{
                     <input type="button" onClick={uploadProfile} value="Change" className="bg-blue-400 text-[#ffffff] rounded-xl p-1 mt-4 cursor-pointer active:scale-95"/>
                  </div>
             </div>
-            <div className="flex flex-col justify-center w-full gap-2 text-[#ffffff] mt-5 rounded-xl bg-[#1c2633] p-2 items-center pt-4 pb-4">
-                    <input type="text" name="username" value={username} className="p-2 outline-none border-2 border-[#ffffff] rounded-xl w-11/12 " onChange={(e)=> setUsername(e.target.value)} placeholder="username"/>  
-                    <input type="text" name="fullName" value={fullName} className="p-2 outline-none border-2 border-[#ffffff] rounded-xl w-11/12 " onChange={(e)=> setFullName(e.target.value)} placeholder="fullName"/>
-                    <input type="email" name="email" value={email}  className="p-2 outline-none border-2 border-[#ffffff] rounded-xl w-11/12" onChange={(e)=> setEmail(e.target.value)} placeholder="email"/>
+            <h1 className="text-white">Update information: </h1>
+            <div className="flex flex-col justify-center w-full gap-2 text-[#ffffff] mt-5 rounded-xl border border-white/30 bg-[#d4cfcf15] p-2 items-center pt-4 pb-4">
+                <input type="text" name="username" value={username} className="p-2 outline-none border border-white/30 rounded-xl w-11/12 " onChange={(e)=> setUsername(e.target.value)} placeholder="username"/>  
+                <input type="text" name="fullName" value={fullName} className="p-2 outline-none border border-white/30 rounded-xl w-11/12 " onChange={(e)=> setFullName(e.target.value)} placeholder="fullName"/>
+                <input type="email" name="email" value={email}  className="p-2 outline-none border border-white/30 rounded-xl w-11/12" onChange={(e)=> setEmail(e.target.value)} placeholder="email"/>
                 <input type="submit" value="Submit" onClick={changeDetails} className="bg-blue-500 p-2 w-11/12 rounded-xl cursor-pointer active:scale-95"/>
             </div>
             <div>

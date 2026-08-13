@@ -8,7 +8,7 @@ import logo from "../assets/logo.svg"
 const NavBar = ({navigation, setNavigation}) =>{
     const[user, _] = useContext(UserContext);
     return(
-        <div className="w-full h-11/12 lg:flex lg:flex-col lg:items-center lg:justify-around rounded-xl bg-[#d4cfcf15] backdrop-blur-2xl backdrop-saturate-150 border border-white/30 shadow-2xl shadow-blue-950/20 ring-1 ring-white/10">
+        <div className="w-full h-11/12 lg:flex lg:flex-col items-center justify-around rounded-xl bg-[#d4cfcf15] backdrop-blur-2xl backdrop-saturate-150 border border-white/30 shadow-2xl shadow-blue-950/20 ring-1 ring-white/10">
             <div className="w-9/12 flex flex-col items-center ">
                 <ul className="w-full flex items-start flex-col text-2xl gap-5 text-[#ffffff]">
                     <li className="w-11"><img src={logo} alt="" / ></li>
