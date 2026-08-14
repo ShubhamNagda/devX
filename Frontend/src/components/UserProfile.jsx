@@ -106,7 +106,7 @@ const UserProfile = ({ searchedUser, onBack }) => {
             <button disabled className="cursor-not-allowed bg-blue-600 mt-4 p-2 w-25 rounded-2xl">
                 follow
             </button>
-            <button className=" cursor-pointer absolute right-3 top-3 backdrop-blur-2xl backdrop-saturate-150 hover:border hover:border-white/30 bg-[#0734fd15] mt-4 p-2 w-25 rounded-2xl flex justify-center" title="edit profile" onClick={() => setEditProfile(user._id)}> <UserRoundCog /> </button>   
+            <button className=" cursor-pointer absolute right-3 top-3 backdrop-blur-2xl backdrop-saturate-150 hover:border hover:border-white/30 bg-[#0734fd15] mt-4 p-2 w-25 rounded-2xl flex justify-center" title="edit profile" onClick={() => setEditProfile(true)}> <UserRoundCog /> </button>   
          </div>
           :<button onClick={followStatus ? () => unfollow(searchedUser._id) : () => follow(searchedUser._id)} className="bg-blue-600 mt-4 p-2 rounded-2xl cursor-pointer w-25 active:scale-95">
             {followStatus ? "Unfollow" : "follow"}
