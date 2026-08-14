@@ -32,9 +32,6 @@ const FindUsers = ({onBack}) =>{
 
     return(
     <div className="relative w-full overflow-y-scroll no-scrollbar  h-11/12 lg:flex rounded-xl bg-[#d4cfcf00] backdrop-blur-2xl backdrop-saturate-150 border border-white/30">
-        <button onClick={onBack} className=" absolute top-2 left-2 text-white cursor-pointer active:scale-95">
-        ← Back
-        </button>
         {selectedUser ? (
             <div className="w-full h-full [&>div]:h-full!">
                 <UserProfile
@@ -43,6 +40,10 @@ const FindUsers = ({onBack}) =>{
                />
             </div>
             ) : (
+                <>
+            <button onClick={onBack} className=" absolute top-2 left-2 text-white cursor-pointer active:scale-95">
+        ← Back
+        </button>
             <div className="w-full flex flex-col items-center">
                 <h1 className="mb-4 mt-6 font-bold text-[#ffffff] text-[22px]">Find your friends:</h1>
                 <form className="flex w-full justify-center " onSubmit={fetchFriends} >
@@ -71,9 +72,9 @@ const FindUsers = ({onBack}) =>{
                     ))}
                  </div>
             </div>
+            </>
             )}
         </div>
-        
     )
 }
 
