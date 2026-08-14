@@ -31,7 +31,7 @@ const FindUsers = ({onBack}) =>{
     }
 
     return(
-    <div className="relative w-full h-11/12 lg:flex rounded-xl bg-[#d4cfcf00] backdrop-blur-2xl backdrop-saturate-150 border border-white/30">
+    <div className="relative w-full overflow-y-scroll no-scrollbar  h-11/12 lg:flex rounded-xl bg-[#d4cfcf00] backdrop-blur-2xl backdrop-saturate-150 border border-white/30">
         <button onClick={onBack} className=" absolute top-2 left-2 text-white cursor-pointer active:scale-95">
         ← Back
         </button>
@@ -44,12 +44,12 @@ const FindUsers = ({onBack}) =>{
             </div>
             ) : (
             <div className="w-full flex flex-col items-center">
-                <h1 className="mb-4 font-bold text-[#ffffff] text-[22px]">Find your friends:</h1>
+                <h1 className="mb-4 mt-6 font-bold text-[#ffffff] text-[22px]">Find your friends:</h1>
                 <form className="flex w-full justify-center " onSubmit={fetchFriends} >
                     <input type="text" value={name} onChange={(e)=>setName(e.target.value)} name="fullName" placeholder="Name: " className="outline-none backdrop-blur-2xl backdrop-saturate-150 border border-white/30 w-3xs pl-2 h-12 rounded-bl-2xl rounded-tl-2xl text-white placeholder:text-[#c0b5b5]"/>
                     <button type="submit" className="backdrop-blur-2xl backdrop-saturate-150 border border-white/30 rounded-tr-2xl rounded-br-2xl pr-2 p-2 cursor-pointer text-white">{<Search/>}</button>
                 </form>
-                <div className="mt-4 flex flex-wrap gap-2 m-2 overflow-y-scroll no-scrollbar">
+                <div className="mt-4 flex justify-center sm:justify-start flex-wrap gap-2 m-2">
                    {friends == null ? <div className="text-white"> User Not found </div> : friends.map((searchedUser) => (
                         <div
                             key={searchedUser._id}
