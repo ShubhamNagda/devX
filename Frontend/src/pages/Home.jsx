@@ -18,7 +18,7 @@ const Home = () =>{
                     <div className="lg:w-3/12 h-full w-11/12 lg:flex lg:items-center pt-0.5 pb-0.5">
                         <NavBar navigation={navigation} setNavigation={setNavigation}/>
                     </div>
-                    <div className="w-11/12 lg:w-4/6 -mt-2.5 mb-2.5  flex items-center pt-0.5 pb-0.5 ">
+                    <div className="w-11/12 lg:w-4/6 -mt-2.5 mb-2.5  flex items-center pt-0.5 pb-0.5 overflow-hidden">
                         {navigation === "Home" ? <AllPosts /> :
                             navigation === "Search" ? <FindUsers onBack={() => setNavigation("Home")} /> : 
                                 navigation === "EditInfo" ? <EditProfile onBack={() => setNavigation("Home")} /> :
