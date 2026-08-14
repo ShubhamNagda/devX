@@ -7,7 +7,7 @@ import logo from "../assets/logo.svg"
 const NavBar = ({navigation, setNavigation}) =>{
     const[user, _] = useContext(UserContext);
     return(
-        <div className="lg:relative z-10 absolute bottom-3 w-11/12 h-2/12 lg:h-11/12 flex lg:flex-col items-center justify-around rounded-xl bg-[#d4cfcf15] backdrop-blur-2xl backdrop-saturate-150 border border-white/30 shadow-2xl shadow-blue-950/20 ring-1 ring-white/10">
+        <div className="w-12/12 h-8/12 lg:h-11/12 flex lg:flex-col items-center justify-around rounded-xl bg-[#d4cfcf15] backdrop-blur-2xl backdrop-saturate-150 border border-white/30 shadow-2xl shadow-blue-950/20 ring-1 ring-white/10">
             <div className="lg:w-9/12 flex flex-row lg:flex-col items-center justify-around">
                 <ul className="w-full flex lg:items-start items-center justify-evenly flex-row lg:flex-col text-xl lg:text-2xl gap-2 lg:gap-5 text-[#ffffff]">
                     <li className="w-11"><img src={logo} alt="" / ></li>

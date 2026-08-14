@@ -14,7 +14,7 @@ const Home = () =>{
     const[navigation, setNavigation] = useContext(NavigationContext);
     return(
         <div>
-            <div className="flex flex-col lg:flex-row w-full gap-0 h-screen bg-[url('./assets/background.svg')] items-center lg:items-stretch lg:justify-around overflow-y-scroll lg:overflow-hidden ">
+            <div className="flex flex-col lg:flex-row w-full gap-0 h-screen bg-[url('./assets/background.svg')] items-center lg:items-stretch lg:justify-around overflow-hidden ">
                     <div className="lg:w-3/12 h-full w-11/12 lg:flex lg:items-center pt-0.5 pb-0.5">
                         <NavBar navigation={navigation} setNavigation={setNavigation}/>
                     </div>
